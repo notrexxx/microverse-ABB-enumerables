@@ -19,35 +19,26 @@ module Enumerable
     arr
   end
 
-  # 3
   def my_select(arr)
     arr_c = []
 
     for i in arr do
       r = yield (i)
-
-      if r
-        arr_c.push(i)
-      end
+      arr_c.push(i) if r
     end
 
     arr_c
   end
 
-  # 4
   def my_all? (arr)
- 
-    arr_c = []
-  
-      for i in arr do
-        r = yield (i) 
-       
-        unless r 
-         arr_c.push(i)
-        end
+    nof = 0
+
+    for i in arr do
+      r = yield (i)
+      nof += 1 if r.nil? or !r
     end
-       
-    arr_c
+
+    nof == 0
   end
 
   # 5
