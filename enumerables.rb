@@ -1,5 +1,5 @@
 module Enumerable
-    def my_each
+    def my_each(arr)
       for i in arr do
         yield i
       end
@@ -7,8 +7,12 @@ module Enumerable
       arr
     end
 
-    def my_each_with_index
+    def my_each_with_index(arr)
+      for i in 0..(arr.length - 1) do
+        yield i, arr[i]
+      end
 
+      arr
     end
 
     #3
