@@ -35,7 +35,19 @@ module Enumerable
   end
 
   # 4
-  def my_all?
+  def my_all? (arr)
+ 
+    arr_c = []
+  
+      for i in arr do
+        r = yield (i) 
+       
+        unless r 
+         arr_c.push(i)
+        end
+    end
+       
+    arr_c
   end
 
   # 5
