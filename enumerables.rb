@@ -23,18 +23,18 @@ module Enumerable
     arr_c = []
 
     for i in arr do
-      r = yield (i)
+      r = yield(i)
       arr_c.push(i) if r
     end
 
     arr_c
   end
 
-  def my_all? (arr)
+  def my_all?(arr)
     nof = 0
 
     for i in arr do
-      r = yield (i)
+      r = yield(i)
       nof += 1 if r.nil? or !r
     end
 
