@@ -41,8 +41,15 @@ module Enumerable
     nof == 0
   end
 
-  # 5
   def my_any?
+    nof = 0
+
+    for i in arr do
+      r = yield(i)
+      nof += 1 if r
+    end
+
+    nof > 0
   end
 
   # 6
