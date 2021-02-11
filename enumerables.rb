@@ -35,7 +35,7 @@ module Enumerable
 
     for i in arr do
       r = yield(i)
-      nof += 1 if r.nil? or !r
+      nof += 1 unless r
     end
 
     nof == 0
