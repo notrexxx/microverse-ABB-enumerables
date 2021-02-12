@@ -3,20 +3,31 @@
 # rubocop:disable Metrics/PerceivedComplexity
 
 module Enumerable
-  def my_each(arr)
-    for i in arr do
-      yield i
-    end
+  def my_each
+    return to_enum(:my_each) unless block_given?
 
-    arr
+    var = self if self.class == Array
+    var = to_a if self.class == Range or Hash
+
+    i = 0
+    while i < var.size
+      yield(var[i])
+      i += 1
+    end
+    self
   end
 
-  def my_each_with_index(arr)
-    for i in 0..(arr.length - 1) do
-      yield i, arr[i]
-    end
+  def my_each_with_index
+    return to_enum(:my_each_with_index) unless block_given?
 
-    arr
+    var = to_a if self.class == Range or Hash
+
+    i = 0
+    while i < var.size
+      yield(var[i], i)
+      i += 1
+    end
+    self
   end
 
   def my_select(arr)
