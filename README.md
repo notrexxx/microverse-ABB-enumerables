@@ -10,7 +10,6 @@ Enumerables exercise on ruby
 
 - Ruby
 
-
 ## Getting Started
 
 - Run this command in your OS terminal: `git clone https://github.com/notrexxx/microverse-ABB-enumerables.git` to get a copy of the project.
@@ -21,7 +20,7 @@ Enumerables exercise on ruby
 * On Windows:
 Have Ruby installed
 * Mac & Linux:
-Lastest version of Ruby installed
+Latest version of Ruby installed
 
 ### Setup
 
