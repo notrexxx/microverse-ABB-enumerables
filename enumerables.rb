@@ -30,14 +30,15 @@ module Enumerable
     self
   end
 
-  def my_select(arr)
+  def my_select()
+    return to_enum(:my_select) unless block_given?
+  
     arr_c = []
-
-    for i in arr do
-      r = yield(i)
-      arr_c.push(i) if r
+    
+    each do |i|
+      arr_c.push(i) if yield i
+    
     end
-
     arr_c
   end
 
