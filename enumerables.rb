@@ -32,25 +32,31 @@ module Enumerable
 
   def my_select()
     return to_enum(:my_select) unless block_given?
-  
+
     arr_c = []
-    
+
     each do |i|
       arr_c.push(i) if yield i
-    
+
     end
     arr_c
   end
 
-  def my_all?(arr)
-    nof = 0
-
-    for i in arr do
-      r = yield(i)
-      nof += 1 unless r
+  def my_all?(param = nil)
+    if block_given?
+      my_each { |e| return false unless yield(e) }
+    elsif param
+      if param.class == Class
+        my_each { |e| return false unless e.is_a? param  }
+      elsif param.class == Regexp
+        my_each { |e| return false unless e.to_s.match(param)  }
+      else
+        my_each { |e| return false unless e === param  }
+      end
+    else
+      my_each { |obj| return false unless obj }
     end
-
-    nof == 0
+    true
   end
 
   def my_any?
@@ -74,12 +80,12 @@ module Enumerable
 
     arr_c = []
     if x
-      my_each do |e| 
-        arr_c.push(arg.call(e)) 
+      my_each do |e|
+        arr_c.push(arg.call(e))
       end
     else
-      my_each do |e| 
-        arr_c.push(yield(e)) 
+      my_each do |e|
+        arr_c.push(yield(e))
       end
     end
     arr_c
