@@ -69,7 +69,20 @@ module Enumerable
   end
 
   # 7
-  def my_map
+  def my_map(x = nil)
+    return to_enum(:my_map) unless block_given? or x
+
+    arr_c = []
+    if x
+      my_each do |e| 
+        arr_c.push(arg.call(e)) 
+      end
+    else
+      my_each do |e| 
+        arr_c.push(yield(e)) 
+      end
+    end
+    arr_c
   end
 
   # 8
