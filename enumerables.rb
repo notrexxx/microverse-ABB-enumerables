@@ -3,6 +3,7 @@
 # rubocop:disable Style/CaseEquality
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/PerceivedComplexity
+# rubocop:disable Metrics/ModuleLength
 
 module Enumerable
   def my_each
@@ -108,11 +109,11 @@ module Enumerable
     count
   end
 
-  def my_map(x = nil)
-    return to_enum(:my_map) unless block_given? || x
+  def my_map(var = nil)
+    return to_enum(:my_map) unless block_given? || var
 
     arr_c = []
-    if x
+    if var
       my_each do |e|
         arr_c.push(arg.call(e))
       end
@@ -154,3 +155,9 @@ module Enumerable
     arr.to_a.my_inject { |a, b| (a * b) }
   end
 end
+
+
+# rubocop:enable Style/CaseEquality
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/PerceivedComplexity
+# rubocop:enable Metrics/ModuleLength
