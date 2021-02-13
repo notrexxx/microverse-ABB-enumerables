@@ -93,7 +93,6 @@ module Enumerable
     true
   end
 
-  # 7
   def my_map(x = nil)
     return to_enum(:my_map) unless block_given? or x
 
@@ -110,8 +109,43 @@ module Enumerable
     arr_c
   end
 
-  # 8
-  def my_inject
+  def my_inject(initial = nil, symbol = nil)
+    arr = self if self.class == Array
+    arr = to_a if self.class == Range or Hash
+
+    if initial.nil?
+      memo = arr[0]
+      arr = arr[1...arr.length]
+    else
+      symbol = initial if initial.is_a?(Symbol)
+      memo = initial.is_a?(Symbol) ? arr[0] : initial
+      arr = arr[1...arr.length] if initial.is_a?(Symbol)
+    end
+
+    if block_given?
+      i = 0
+      while i < arr.length
+        memo = yield(memo, arr[i])
+        i += 1
+      end
+    elsif symbol
+      case symbol
+      when :+
+        i = 0
+        while i < arr.length
+          memo += arr[i]
+          i += 1
+        end
+      when :*
+        i = 0
+        while i < arr.length
+          memo *= arr[i]
+          i += 1
+        end
+      end
+    end
+
+    memo
   end
 
   # 9
