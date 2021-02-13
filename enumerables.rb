@@ -3,6 +3,7 @@
 # rubocop:disable Style/CaseEquality
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/PerceivedComplexity
+# rubocop:disable Metrics/ModuleLength
 
 module Enumerable
   def my_each
@@ -154,3 +155,9 @@ module Enumerable
     arr.to_a.my_inject { |a, b| (a * b) }
   end
 end
+
+
+# rubocop:enable Style/CaseEquality
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/PerceivedComplexity
+# rubocop:enable Metrics/ModuleLength
