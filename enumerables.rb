@@ -93,6 +93,20 @@ module Enumerable
     true
   end
 
+  def my_count(item = nil)
+    count = 0
+
+    if block_given?
+      my_each { |i| count += 1 if yield(i) }
+    elsif item
+      my_each { |i| count += 1 if item == i }
+    else
+      count = size
+    end
+
+    count
+  end
+
   def my_map(x = nil)
     return to_enum(:my_map) unless block_given? or x
 
