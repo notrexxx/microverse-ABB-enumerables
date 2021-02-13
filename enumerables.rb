@@ -1,4 +1,6 @@
-# rubocop:disable Style/CaseEquality, Style/StringLiterals, Style/For
+# frozen_string_literal: true
+
+# rubocop:disable Style/CaseEquality
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/PerceivedComplexity
 
@@ -6,8 +8,8 @@ module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
 
-    var = self if self.class == Array
-    var = to_a if self.class == Range or Hash
+    var = self if instance_of?(Array)
+    var = to_a if instance_of?(Range) || Hash
 
     i = 0
     while i < var.size
@@ -20,7 +22,7 @@ module Enumerable
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
 
-    var = to_a if self.class == Range or Hash
+    var = to_a if instance_of?(Range) || Hash
 
     i = 0
     while i < var.size
@@ -30,7 +32,7 @@ module Enumerable
     self
   end
 
-  def my_select()
+  def my_select
     return to_enum(:my_select) unless block_given?
 
     arr_c = []
@@ -45,9 +47,9 @@ module Enumerable
     if block_given?
       my_each { |e| return false unless yield(e) }
     elsif param
-      if param.class == Regexp
+      if param.instance_of?(Regexp)
         my_each { |e| return false unless e.to_s.match(param) }
-      elsif param.class == Class
+      elsif param.instance_of?(Class)
         my_each { |e| return false unless e.is_a? param }
       else
         my_each { |e| return false unless e === param }
@@ -62,9 +64,9 @@ module Enumerable
     if block_given?
       my_each { |e| return true if yield(e) }
     elsif param
-      if param.class == Regexp
+      if param.instance_of?(Regexp)
         my_each { |e| return true if e.to_s.match(param) }
-      elsif param.class == Class
+      elsif param.instance_of?(Class)
         my_each { |e| return true if e.is_a? param }
       else
         my_each { |e| return true if e === param }
@@ -79,9 +81,9 @@ module Enumerable
     if block_given?
       my_each { |e| return false if yield(e) }
     elsif param
-      if param.class == Regexp
+      if param.instance_of?(Regexp)
         my_each { |e| return false if e.to_s.match(param) }
-      elsif param.class == Class
+      elsif param.instance_of?(Class)
         my_each { |e| return false if e.is_a? param }
       else
         my_each { |e| return false if e === param }
@@ -107,7 +109,7 @@ module Enumerable
   end
 
   def my_map(x = nil)
-    return to_enum(:my_map) unless block_given? or x
+    return to_enum(:my_map) unless block_given? || x
 
     arr_c = []
     if x
@@ -123,8 +125,8 @@ module Enumerable
   end
 
   def my_inject(initial = nil, symbol = nil)
-    arr = self if self.class == Array
-    arr = to_a if self.class == Range or Hash
+    arr = self if instance_of?(Array)
+    arr = to_a if instance_of?(Range) || Hash
 
     if initial.nil?
       memo = arr[0]
