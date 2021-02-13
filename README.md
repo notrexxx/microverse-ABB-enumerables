@@ -3,7 +3,18 @@
 
 ## RUBY Advanced Building Blocks: Enumerables
 
-Enumerables exercise on ruby
+Enumerable methods implemented:
+
+- my_each
+- my_each_with_index
+- my_select
+- my_all?
+- my_any?
+- my_none?
+- my_count
+- my_map
+- my_inject
+- multiply_els
 
 
 ## Built With
