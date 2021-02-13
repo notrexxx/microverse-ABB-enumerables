@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # rubocop:disable Style/CaseEquality
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/PerceivedComplexity
@@ -126,7 +124,7 @@ module Enumerable
   end
 
   def my_inject(initial = nil, symbol = nil)
-    raise LocalJumpError.new('no block given') if !block_given? && initial.nil? && symbol.nil?
+    raise LocalJumpError, 'no block given' if !block_given? && initial.nil? && symbol.nil?
 
     arr = Array self
     memo = arr[0]
@@ -155,7 +153,6 @@ module Enumerable
     arr.to_a.my_inject { |a, b| (a * b) }
   end
 end
-
 
 # rubocop:enable Style/CaseEquality
 # rubocop:enable Metrics/CyclomaticComplexity
