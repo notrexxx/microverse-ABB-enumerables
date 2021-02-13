@@ -125,45 +125,32 @@ module Enumerable
   end
 
   def my_inject(initial = nil, symbol = nil)
-    arr = self if instance_of?(Array)
-    arr = to_a if instance_of?(Range) || Hash
+    raise LocalJumpError.new "no block given" if !block_given? && initial.nil? && symbol.nil?
 
-    if initial.nil?
-      memo = arr[0]
-      arr = arr[1...arr.length]
-    else
+    arr = Array self
+    memo = arr[0]
+    arr = arr[1...arr.length] if initial.nil? || initial.is_a?(Symbol)
+
+    if initial
       symbol = initial if initial.is_a?(Symbol)
-      memo = initial.is_a?(Symbol) ? arr[0] : initial
-      arr = arr[1...arr.length] if initial.is_a?(Symbol)
+      memo = initial unless initial.is_a?(Symbol)
     end
 
     if block_given?
-      i = 0
-      while i < arr.length
-        memo = yield(memo, arr[i])
-        i += 1
-      end
+      arr.my_each { |e| memo = yield(memo, e) }
     elsif symbol
       case symbol
       when :+
-        i = 0
-        while i < arr.length
-          memo += arr[i]
-          i += 1
-        end
+        arr.my_each { |e| memo += e }
       when :*
-        i = 0
-        while i < arr.length
-          memo *= arr[i]
-          i += 1
-        end
+        arr.my_each { |e| memo *= e }
       end
     end
 
     memo
   end
-end
 
-def multiply_els(arr)
-  arr.to_a.my_inject { |a, b| (a * b) }
+  def multiply_els(arr)
+    arr.to_a.my_inject { |a, b| (a * b) }
+  end
 end
