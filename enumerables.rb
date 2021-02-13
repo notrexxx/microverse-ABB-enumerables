@@ -108,11 +108,11 @@ module Enumerable
     count
   end
 
-  def my_map(x = nil)
-    return to_enum(:my_map) unless block_given? || x
+  def my_map(arg = nil)
+    return to_enum(:my_map) unless block_given? or arg
 
     arr_c = []
-    if x
+    if arg
       my_each do |e|
         arr_c.push(arg.call(e))
       end
