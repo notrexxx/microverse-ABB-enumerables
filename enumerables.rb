@@ -37,7 +37,6 @@ module Enumerable
 
     each do |i|
       arr_c.push(i) if yield i
-
     end
     arr_c
   end
@@ -47,11 +46,11 @@ module Enumerable
       my_each { |e| return false unless yield(e) }
     elsif param
       if param.class == Regexp
-        my_each { |e| return false unless e.to_s.match(param)  }
+        my_each { |e| return false unless e.to_s.match(param) }
       elsif param.class == Class
-        my_each { |e| return false unless e.is_a? param  }
+        my_each { |e| return false unless e.is_a? param }
       else
-        my_each { |e| return false unless e === param  }
+        my_each { |e| return false unless e === param }
       end
     else
       my_each { |obj| return false unless obj }
@@ -64,11 +63,11 @@ module Enumerable
       my_each { |e| return true if yield(e) }
     elsif param
       if param.class == Regexp
-        my_each { |e| return true if e.to_s.match(param)  }
+        my_each { |e| return true if e.to_s.match(param) }
       elsif param.class == Class
-        my_each { |e| return true if e.is_a? param  }
+        my_each { |e| return true if e.is_a? param }
       else
-        my_each { |e| return true if e === param  }
+        my_each { |e| return true if e === param }
       end
     else
       my_each { |obj| return true if obj }
@@ -81,11 +80,11 @@ module Enumerable
       my_each { |e| return false if yield(e) }
     elsif param
       if param.class == Regexp
-        my_each { |e| return false if e.to_s.match(param)  }
+        my_each { |e| return false if e.to_s.match(param) }
       elsif param.class == Class
-        my_each { |e| return false if e.is_a? param  }
+        my_each { |e| return false if e.is_a? param }
       else
-        my_each { |e| return false if e === param  }
+        my_each { |e| return false if e === param }
       end
     else
       my_each { |obj| return false if obj }
@@ -161,8 +160,8 @@ module Enumerable
 
     memo
   end
+end
 
-  # 9
-  def multiply_els
-  end
+def multiply_els(arr)
+  arr.to_a.my_inject { |a, b| (a * b) }
 end
