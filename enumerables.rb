@@ -76,8 +76,21 @@ module Enumerable
     false
   end
 
-  # 6
-  def my_none?
+  def my_none?(param = nil)
+    if block_given?
+      my_each { |e| return false if yield(e) }
+    elsif param
+      if param.class == Regexp
+        my_each { |e| return false if e.to_s.match(param)  }
+      elsif param.class == Class
+        my_each { |e| return false if e.is_a? param  }
+      else
+        my_each { |e| return false if e === param  }
+      end
+    else
+      my_each { |obj| return false if obj }
+    end
+    true
   end
 
   # 7
