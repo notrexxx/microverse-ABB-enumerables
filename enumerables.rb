@@ -125,7 +125,7 @@ module Enumerable
   end
 
   def my_inject(initial = nil, symbol = nil)
-    raise LocalJumpError.new 'no block given' if !block_given? && initial.nil? && symbol.nil?
+    raise LocalJumpError.new('no block given') if !block_given? && initial.nil? && symbol.nil?
 
     arr = Array self
     memo = arr[0]
