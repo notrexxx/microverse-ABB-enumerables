@@ -46,10 +46,10 @@ module Enumerable
     if block_given?
       my_each { |e| return false unless yield(e) }
     elsif param
-      if param.class == Class
-        my_each { |e| return false unless e.is_a? param  }
-      elsif param.class == Regexp
+      if param.class == Regexp
         my_each { |e| return false unless e.to_s.match(param)  }
+      elsif param.class == Class
+        my_each { |e| return false unless e.is_a? param  }
       else
         my_each { |e| return false unless e === param  }
       end
@@ -59,15 +59,21 @@ module Enumerable
     true
   end
 
-  def my_any?
-    nof = 0
-
-    for i in arr do
-      r = yield(i)
-      nof += 1 if r
+  def my_any?(param = nil)
+    if block_given?
+      my_each { |e| return true if yield(e) }
+    elsif param
+      if param.class == Regexp
+        my_each { |e| return true if e.to_s.match(param)  }
+      elsif param.class == Class
+        my_each { |e| return true if e.is_a? param  }
+      else
+        my_each { |e| return true if e === param  }
+      end
+    else
+      my_each { |obj| return true if obj }
     end
-
-    nof > 0
+    false
   end
 
   # 6
