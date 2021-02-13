@@ -148,10 +148,10 @@ module Enumerable
 
     memo
   end
+end
 
-  def multiply_els(arr)
-    arr.to_a.my_inject { |a, b| (a * b) }
-  end
+def multiply_els(arr)
+  arr.to_a.my_inject { |a, b| (a * b) }
 end
 
 # rubocop:enable Style/CaseEquality
