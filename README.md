@@ -29,11 +29,11 @@ Rspec test methods implemented:
 ### Prerequisites
 
 * On Windows:
-Have Ruby installed
-Have rspec installed
+- Have Ruby installed
+- Have rspec installed
 * Mac & Linux:
-Latest version of Ruby installed
-Have rspec installed
+- Latest version of Ruby installed
+- Have rspec installed
 
 ### Setup
 
@@ -43,7 +43,7 @@ Have rspec installed
 
 - Start a new Terminal 
 - Go to the directory where you cloned the repository
-- Type:
+Type:
 ```
  rspec
 ```
