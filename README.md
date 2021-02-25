@@ -43,7 +43,7 @@ Rspec test methods implemented:
 
 - Start a new Terminal 
 - Go to the directory where you cloned the repository
-Type:
+- Type:
 ```
  rspec
 ```
