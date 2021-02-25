@@ -1,9 +1,9 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
 
-## RUBY Advanced Building Blocks: Enumerables
+## RUBY Advanced Building Blocks: Enumerables - RSPEC TESTING
 
-Enumerable methods implemented:
+Rspec test methods implemented:
 
 - my_each
 - my_each_with_index
@@ -30,8 +30,10 @@ Enumerable methods implemented:
 
 * On Windows:
 Have Ruby installed
+Have rspec installed
 * Mac & Linux:
 Latest version of Ruby installed
+Have rspec installed
 
 ### Setup
 
@@ -39,10 +41,14 @@ Latest version of Ruby installed
 
 ### Usage
 
-* On Windows:
-Ruby enumerables.rb
-* Mac & Linux:
-$ Ruby enumerables.rb
+- Start a new Terminal 
+- Go to the directory where you cloned the repository
+- Type:
+```
+ rspec
+```
+and press ENTER
+
 
 ## Authors
 
@@ -51,11 +57,6 @@ $ Ruby enumerables.rb
 - GitHub: [@notrexxx](https://github.com/notrexxx)
 - Twitter: [@emigdioleon1](https://twitter.com/emigdioleon1)
 - LinkedIn: [Emigdio Leon](https://linkedin.com/emigdio-leon-689109195)
-
-👤 **Carlos González**
-- GitHub: [@chuckbuckethead](https://github.com/chuckbuckethead)
-- Twitter: [@aclerkofpomier](https://twitter.com/aclerkofpomier)
-- LinkedIn: [Carlos González](https://www.linkedin.com/in/chuckbuckethead/)
 
 ## Show your support
 
